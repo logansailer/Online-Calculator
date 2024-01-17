@@ -1,0 +1,56 @@
+.container {
+    margin: auto;
+    border: solid 2px black;
+    width: 600px;
+    height: 800px;
+}
+
+.display {
+    background-color: black;
+    height: 20%;
+    border: 2px solid;
+    border-color: rgb(95, 99, 104);
+}
+
+.buttons-div {
+    background-color: black;
+    display: flex;
+    height: 80%;
+}
+
+.numbers-div {
+    height: 100%;
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.operators-div {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.button {
+    color: white;
+    border: none;
+    font-size: 100px;
+    padding: 10px 35px;
+    margin: 5px;
+    border-radius: 7%
+}
+
+.number {
+    background-color: rgb(60, 64, 67);
+}
+
+.operators {
+    background-color: rgb(95, 99, 104);
+}
+
+.operators-div .operators{
+    width: 100%
+}
