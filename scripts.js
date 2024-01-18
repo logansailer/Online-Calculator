@@ -1,58 +1,57 @@
-// get value of button pressed, add it to end of string
-// display = string until operator is pressed
-// get value of display, set it to variable1
-// when operator button is pressed, call a function for that variable
-// function takes variable1 evaluates it, performs function
-// waits for equals to evaluate expression
-// sets it as new display variable
-
 //listens for button presses and sends it to appropriate function
 function clickButton () {
-    for (let i = 0; i < number.length; i++)  {
-        number[i].addEventListener("click", function() {
+    buttons.forEach((button) =>
+        button.addEventListener("click", function() {
+            if (this.id == 1 || this.id == 2 || this.id == 3 || this.id == 4 || this.id ==5 ||
+                this.id ==6 || this.id == 7 || this.id == 8 || this.id == 9 )
             displayArr.push(this.id);
+            displayInt = parseInt(displayArr.join(""));
             updateDisplay()
-        })
-        if (plus.addEventListener("click", add)) {
-        } else if (minus.addEventListener("click", subtract)) {
-        } else if (multiplier.addEventListener("click", multiply)) {
-        } else if (divider.addEventListener("click", divide)) {
-        } else if (clear.addEventListener("click", eraser)) {
-        } else if (eql.addEventListener("click", equals)) {}
-    }
+            operate()
+        }));
+    };
+
+//displays the current integer being typed in
+function updateDisplay() {
+    string = displayArr.join("");
+    display.innerHTML = currentDisplay.textContent = string;
 }
 
-//converts 
-function updateDisplay() {
-    let currentDisplay = document.createElement("p");
-    let displayInt = parseInt(displayArr.join(""));
-    display.innerHTML = currentDisplay.textContent = displayInt;
+function operate() {
+    if (plus.addEventListener("click", add)) {
+    } else if (minus.addEventListener("click", subtract)) {
+    } else if (multiplier.addEventListener("click", multiply)) {
+    } else if (divider.addEventListener("click", divide)) {
+    } else if (clear.addEventListener("click", erase)) {
+    } else if (eql.addEventListener("click", equals)) {}
 }
 
 function add() {
-    let previousInput = 
-    console.log("addtest")
+    previousInt += displayInt;
+    updateDisplay();
+    displayArr = []
+    plusEquals()
 }
 
 function subtract() {
-    console.log("subractTest")
 }
 
 function multiply() {
-    console.log("multiplyTest")
 }
 
 function divide() {
-    console.log("divideTest")
 }
 
-function equals() {
-    console.log("equalsTests")
+function plusEquals() {
+    console.log(previousArr)
 }
 
-function eraser(){
-    displayArr = [0];
-    updateDisplay()
+function erase() {
+    displayInt = 0;
+    previousInt = 0;
+    answer = 0;
+    displayArr = [];
+    updateDisplay(displayInt);
 }
 
 
@@ -63,7 +62,12 @@ const multiplier = document.querySelector("#multiplier");
 const divider = document.querySelector("#divider");
 const eql = document.querySelector("#equals");
 const clear = document.querySelector("#c");
-const number = document.querySelectorAll(".number");
+const buttons = document.querySelectorAll("button");
 
+let currentDisplay = document.createElement("p");
 let displayArr = [];
+let displayInt = 0;
+let previousArr = 0;
+let previousInt = 0;
+let answer = 0;
 clickButton();
