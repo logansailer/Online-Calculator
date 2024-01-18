@@ -1,4 +1,3 @@
-// if button pressed and class != operator
 // get value of button pressed, add it to end of string
 // display = string until operator is pressed
 // get value of display, set it to variable1
@@ -7,12 +6,12 @@
 // waits for equals to evaluate expression
 // sets it as new display variable
 
-//for loop, if opperand in array, perform that function, pop to get last off (opperand) and then get new array
+//listens for button presses and sends it to appropriate function
 function clickButton () {
     for (let i = 0; i < number.length; i++)  {
         number[i].addEventListener("click", function() {
-            numArr.push(this.id);
-            console.log(numArr)
+            displayArr.push(this.id);
+            updateDisplay()
         })
         if (plus.addEventListener("click", add)) {
         } else if (minus.addEventListener("click", subtract)) {
@@ -23,32 +22,37 @@ function clickButton () {
     }
 }
 
+//converts 
 function updateDisplay() {
-    
+    let currentDisplay = document.createElement("p");
+    let displayInt = parseInt(displayArr.join(""));
+    display.innerHTML = currentDisplay.textContent = displayInt;
 }
 
 function add() {
+    let previousInput = 
     console.log("addtest")
 }
 
 function subtract() {
-    console.log("subratctest")
+    console.log("subractTest")
 }
 
 function multiply() {
-    
+    console.log("multiplyTest")
 }
 
 function divide() {
-    
+    console.log("divideTest")
 }
 
 function equals() {
-
+    console.log("equalsTests")
 }
 
 function eraser(){
-    numArr = [];
+    displayArr = [0];
+    updateDisplay()
 }
 
 
@@ -61,5 +65,5 @@ const eql = document.querySelector("#equals");
 const clear = document.querySelector("#c");
 const number = document.querySelectorAll(".number");
 
-let numArr = [];
+let displayArr = [];
 clickButton();
