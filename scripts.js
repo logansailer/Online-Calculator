@@ -1,57 +1,92 @@
-//listens for button presses and sends it to appropriate function
+//listens for button presses and sends it to appropriate functio
 function clickButton () {
-    buttons.forEach((button) =>
-        button.addEventListener("click", function() {
-            if (this.id == 1 || this.id == 2 || this.id == 3 || this.id == 4 || this.id ==5 ||
-                this.id ==6 || this.id == 7 || this.id == 8 || this.id == 9 )
-            displayArr.push(this.id);
-            displayInt = parseInt(displayArr.join(""));
-            updateDisplay()
+    for (let i = 0; i < numbers.length; i++) {
+        numbers[i].addEventListener("click", function() {
+            displayArr.push(numbers[i].id);
+            currentInt = parseInt(displayArr.join(""));
+            updateDisplay(currentInt)
             operate()
-        }));
+        });
     };
-
-//displays the current integer being typed in
-function updateDisplay() {
-    string = displayArr.join("");
-    display.innerHTML = currentDisplay.textContent = string;
 }
 
+//displays the current integer being typed in
+function updateDisplay(int) {
+    display.innerHTML = currentDisplay.textContent = int;
+}
+
+//when an operator key is pressed, passes it to the proper function
 function operate() {
     if (plus.addEventListener("click", add)) {
     } else if (minus.addEventListener("click", subtract)) {
     } else if (multiplier.addEventListener("click", multiply)) {
     } else if (divider.addEventListener("click", divide)) {
     } else if (clear.addEventListener("click", erase)) {
-    } else if (eql.addEventListener("click", equals)) {}
+    } else if (eql.addEventListener("click", evaluate)) {}
 }
 
+//passes the function to be added
 function add() {
-    previousInt += displayInt;
-    updateDisplay();
-    displayArr = []
-    plusEquals()
+    operator = "+"
+    evaluate(previousInt, currentInt)
 }
 
+//passes the function to be subtracted
 function subtract() {
+    operator = "-"
+    evaluate(previousInt, currentInt)
 }
 
+//passes the function to be multiplied
 function multiply() {
+    previousInt = 1;
+    operator = "x"
+    evaluate(previousInt, currentInt)
 }
 
+//passes the function to be divided
 function divide() {
+    operator = "÷"
+    evaluate(previousInt, currentInt)
 }
 
-function plusEquals() {
-    console.log(previousArr)
+//using the previous calculated number (0 if start) and the current display.
+//preforms proper operation on the variable
+function evaluate() {
+    if (operator == "+") {
+        answer = previousInt + currentInt
+        updateDisplay(answer);
+        clearVariables()
+        previousInt = answer;
+    } else if (operator == "-")  {
+        answer = previousInt - currentInt
+        updateDisplay(answer);
+        clearVariables()
+        previousInt = answer;
+    } else if (operator == "x")  {
+        answer = previousInt * currentInt
+        updateDisplay(answer);
+        clearVariables()
+        previousInt = answer;
+    } else if (operator == "÷")  {
+        answer = previousInt / currentInt
+        updateDisplay(answer);
+        clearVariables()
+        previousInt = answer;
+    }
+}
+
+function clearVariables() {
+    currentInt = 0;
+    displayArr = []
 }
 
 function erase() {
-    displayInt = 0;
+    currentInt = 0;
     previousInt = 0;
     answer = 0;
     displayArr = [];
-    updateDisplay(displayInt);
+    updateDisplay(currentInt);
 }
 
 
@@ -62,12 +97,12 @@ const multiplier = document.querySelector("#multiplier");
 const divider = document.querySelector("#divider");
 const eql = document.querySelector("#equals");
 const clear = document.querySelector("#c");
-const buttons = document.querySelectorAll("button");
+const numbers = document.querySelectorAll(".number");
 
 let currentDisplay = document.createElement("p");
 let displayArr = [];
-let displayInt = 0;
-let previousArr = 0;
+let currentInt = 0;
 let previousInt = 0;
 let answer = 0;
+let operator = "";
 clickButton();
