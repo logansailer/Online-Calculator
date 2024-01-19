@@ -17,12 +17,12 @@ function updateDisplay(int) {
 
 //when an operator key is pressed, passes it to the proper function
 function operate() {
-    if (plus.addEventListener("click", add)) {
-    } else if (minus.addEventListener("click", subtract)) {
-    } else if (multiplier.addEventListener("click", multiply)) {
-    } else if (divider.addEventListener("click", divide)) {
-    } else if (clear.addEventListener("click", erase)) {
-    } else if (eql.addEventListener("click", evaluate)) {}
+    plus.addEventListener("click", add)
+    minus.addEventListener("click", subtract)
+    multiplier.addEventListener("click", multiply)
+    divider.addEventListener("click", divide)
+    eql.addEventListener("click", equals)
+    clear.addEventListener("click", erase)
 }
 
 //passes the function to be added
@@ -50,34 +50,31 @@ function divide() {
     evaluate(previousInt, currentInt)
 }
 
+function equals() {
+    evaluate();
+}
+
 //using the previous calculated number (0 if start) and the current display.
 //preforms proper operation on the variable
 function evaluate() {
     if (operator == "+") {
         answer = previousInt + currentInt
-        updateDisplay(answer);
-        clearVariables()
-        previousInt = answer;
-    } else if (operator == "-")  {
-        answer = previousInt - currentInt
-        updateDisplay(answer);
-        clearVariables()
-        previousInt = answer;
-    } else if (operator == "x")  {
-        answer = previousInt * currentInt
-        updateDisplay(answer);
-        clearVariables()
-        previousInt = answer;
-    } else if (operator == "÷")  {
-        answer = previousInt / currentInt
-        updateDisplay(answer);
-        clearVariables()
-        previousInt = answer;
     }
+    if (operator == "-")  {
+        answer = previousInt - currentInt
+    }
+    if (operator == "x")  {
+        answer = previousInt * currentInt
+    } 
+    if (operator == "÷")  {
+        answer = previousInt / currentInt
+    }
+        updateDisplay(answer);
+        clearVariables()
+        previousInt = answer;
 }
 
 function clearVariables() {
-    currentInt = 0;
     displayArr = []
 }
 
