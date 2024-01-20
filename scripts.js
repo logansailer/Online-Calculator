@@ -21,67 +21,76 @@ function operate() {
     minus.addEventListener("click", subtract)
     multiplier.addEventListener("click", multiply)
     divider.addEventListener("click", divide)
-    eql.addEventListener("click", equals)
+    eql.addEventListener("click", evaluate)
     clear.addEventListener("click", erase)
 }
 
 //passes the function to be added
 function add() {
+    evaluate()
     operator = "+"
-    evaluate(previousInt, currentInt)
+    evaluate()
 }
 
 //passes the function to be subtracted
 function subtract() {
+    evaluate()
     operator = "-"
-    evaluate(previousInt, currentInt)
+    evaluate()
 }
 
 //passes the function to be multiplied
 function multiply() {
-    previousInt = 1;
+    evaluate()
     operator = "x"
-    evaluate(previousInt, currentInt)
+    evaluate()
 }
 
 //passes the function to be divided
 function divide() {
     operator = "÷"
-    evaluate(previousInt, currentInt)
-}
-
-function equals() {
-    evaluate();
+    evaluate()
 }
 
 //using the previous calculated number (0 if start) and the current display.
 //preforms proper operation on the variable
 function evaluate() {
+    answer = currentInt;
     if (operator == "+") {
-        answer = previousInt + currentInt
+        answer = previousInt + currentInt;
     }
     if (operator == "-")  {
-        answer = previousInt - currentInt
+        answer = previousInt - currentInt;
     }
     if (operator == "x")  {
-        answer = previousInt * currentInt
+        console.log(counter)
+        if (counter == 0) {
+            answer = currentInt * 1;
+            counter++
+        }
+        if (counter > 0) {
+        answer = previousInt * currentInt;
+        }
     } 
     if (operator == "÷")  {
-        answer = previousInt / currentInt
+        answer = previousInt / currentInt;
     }
         updateDisplay(answer);
-        clearVariables()
         previousInt = answer;
+        clearVariables()
 }
 
 function clearVariables() {
     displayArr = []
+    currentInt = 0;
 }
 
 function erase() {
     currentInt = 0;
     previousInt = 0;
     answer = 0;
+    operator = ""
+    counter = 0;
     displayArr = [];
     updateDisplay(currentInt);
 }
@@ -101,5 +110,6 @@ let displayArr = [];
 let currentInt = 0;
 let previousInt = 0;
 let answer = 0;
+let counter = 0;
 let operator = "";
 clickButton();
