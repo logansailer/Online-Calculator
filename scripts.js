@@ -21,13 +21,14 @@ function operate() {
     minus.addEventListener("click", subtract)
     multiplier.addEventListener("click", multiply)
     divider.addEventListener("click", divide)
-    eql.addEventListener("click", evaluate)
+    eql.addEventListener("click", equals)
     clear.addEventListener("click", erase)
 }
 
 //passes the function to be added
 function add() {
     evaluate()
+    currentInt = 0;
     operator = "+"
     evaluate()
 }
@@ -35,6 +36,7 @@ function add() {
 //passes the function to be subtracted
 function subtract() {
     evaluate()
+    currentInt = 0;
     operator = "-"
     evaluate()
 }
@@ -42,13 +44,20 @@ function subtract() {
 //passes the function to be multiplied
 function multiply() {
     evaluate()
+    currentInt = answer
     operator = "x"
     evaluate()
 }
 
 //passes the function to be divided
 function divide() {
+    evaluate()
+    currentInt = answer
     operator = "÷"
+    evaluate()
+}
+
+function equals() {
     evaluate()
 }
 
@@ -57,23 +66,26 @@ function divide() {
 function evaluate() {
     answer = currentInt;
     if (operator == "+") {
-        answer = previousInt + currentInt;
+        answer = currentInt + previousInt;
     }
     if (operator == "-")  {
         answer = previousInt - currentInt;
     }
     if (operator == "x")  {
-        console.log(counter)
         if (counter == 0) {
-            answer = currentInt * 1;
-            counter++
-        }
-        if (counter > 0) {
-        answer = previousInt * currentInt;
+            counter++;
+        } else if (counter > 0) {
+            answer = previousInt * currentInt
+            counter = 0;
         }
     } 
     if (operator == "÷")  {
-        answer = previousInt / currentInt;
+        if (counter == 0) {
+            counter++;
+        } else if (counter > 0) {
+            answer = previousInt / currentInt
+            counter = 0;
+        }
     }
         updateDisplay(answer);
         previousInt = answer;
@@ -82,7 +94,6 @@ function evaluate() {
 
 function clearVariables() {
     displayArr = []
-    currentInt = 0;
 }
 
 function erase() {
