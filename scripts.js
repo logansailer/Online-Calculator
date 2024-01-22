@@ -12,7 +12,7 @@ function clickButton () {
 
 //displays the current integer being typed in
 function updateDisplay(int) {
-    display.innerHTML = currentDisplay.textContent = int;
+    display.innerHTML = currentDisplay.textContent = Math.round(int*10)/10;
 }
 
 //when an operator key is pressed, passes it to the proper function
@@ -58,7 +58,9 @@ function divide() {
 function equals() {
     evaluate()
     currentInt = 0
-    counter = 0;
+    if (operator == "x" || operator == "÷") {
+        counter = -1;
+    }
 }
 
 //using the previous calculated number (0 if start) and the current display.
@@ -72,7 +74,7 @@ function evaluate() {
         answer = previousInt - currentInt;
     }
     if (operator == "x")  {
-        if (counter == 0) {
+        if (counter <= 0) {
             answer = previousInt
             counter++;
         } else if (counter > 0) {
@@ -81,7 +83,7 @@ function evaluate() {
         }
     } 
     if (operator == "÷")  {
-        if (counter == 0) {
+        if (counter <= 0) {
             answer = previousInt
             counter++;
         } else if (counter > 0) {
