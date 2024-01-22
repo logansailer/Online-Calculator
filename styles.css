@@ -63,3 +63,7 @@
 .operators-div .operators{
     width: 100%
 }
+
+.button:active {
+    background-color: aliceblue;
+}
