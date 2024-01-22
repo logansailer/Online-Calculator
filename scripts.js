@@ -44,7 +44,6 @@ function subtract() {
 //passes the function to be multiplied
 function multiply() {
     evaluate()
-    currentInt = answer
     operator = "x"
     evaluate()
 }
@@ -52,13 +51,14 @@ function multiply() {
 //passes the function to be divided
 function divide() {
     evaluate()
-    currentInt = answer
     operator = "÷"
     evaluate()
 }
 
 function equals() {
     evaluate()
+    currentInt = 0
+    counter = 0;
 }
 
 //using the previous calculated number (0 if start) and the current display.
@@ -73,6 +73,7 @@ function evaluate() {
     }
     if (operator == "x")  {
         if (counter == 0) {
+            answer = previousInt
             counter++;
         } else if (counter > 0) {
             answer = previousInt * currentInt
@@ -81,6 +82,7 @@ function evaluate() {
     } 
     if (operator == "÷")  {
         if (counter == 0) {
+            answer = previousInt
             counter++;
         } else if (counter > 0) {
             answer = previousInt / currentInt
@@ -89,11 +91,7 @@ function evaluate() {
     }
         updateDisplay(answer);
         previousInt = answer;
-        clearVariables()
-}
-
-function clearVariables() {
-    displayArr = []
+        displayArr = []
 }
 
 function erase() {
