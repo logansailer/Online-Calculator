@@ -1,5 +1,5 @@
-<h2>Restaurant Page</h2>
+<h2>Online-Calculator</h2>
 
-Mockup homepage using JavaScript, HTML, and CSS, built to practice using Webpack.
+An online calculator with basic math functions built to practice JS and DOM manipulation.
 
 See it live [here](https://logansailer.github.io/Online-Calculator/) 👈
